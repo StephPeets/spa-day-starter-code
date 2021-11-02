@@ -7,16 +7,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("user")
 public class UserController {
 
-	@GetMapping("/user/add")
+	private Model model;
+	private User user;
+	private String verify;
+
+	@GetMapping("add")
 	public String displayAddUserForm(){
-		return "user/add";
+		return "/user/add";
 	}
 
-	@PostMapping("/user")
+	@PostMapping
 	public String processAddUserForm(Model model, @ModelAttribute User user, String verify) {
-		return "user";
+		model.addAttribute(user);
+		return "/user/index";
 	}
 
 
